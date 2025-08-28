@@ -1,0 +1,298 @@
+{% load static%}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Video Projects</title>
+  <style>
+    :root {
+      --dark-bg: #1e1e1e;
+      --light-grey: #2d2d2d;
+      --text-light: #f0f0f0;
+      --accent: #8ecae6;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    body {
+      background-color: var(--dark-bg);
+      color: var(--text-light);
+      padding: 2rem;
+    }
+
+    .header {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+
+    .header h1 {
+      font-size: 2.5rem;
+      margin-bottom: 0.5rem;
+      font-weight: 700;
+      color: var(--accent);
+    }
+
+   .portfolio-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  gap: 2rem;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+.project-box {
+  background-color: var(--light-grey);
+  border-radius: 12px;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.4);
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.project-box:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+.project-title {
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: var(--accent);
+}
+
+.project-description {
+  font-size: 0.9rem;
+  opacity: 0.8;
+}
+
+.video-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.video-preview {
+  width: 100%;
+  border-radius: 8px;
+  background-color: #000;
+  overflow: hidden;
+  position: relative;
+}
+
+/* Aspect Ratios */
+.aspect-16-9 {
+  padding-bottom: 56.25%; /* 16:9 ratio */
+}
+
+.aspect-9-16 {
+  padding-bottom: 177.78%; /* 9:16 ratio */
+}
+
+.video-preview video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 8px;
+}
+    /* Modal */
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background-color: rgba(0, 0, 0, 0.95);
+      z-index: 1000;
+      justify-content: center;
+      align-items: center;
+      padding: 1rem;
+    }
+
+    .modal-content video {
+      max-width: 100%;
+      max-height: 90vh;
+      border-radius: 10px;
+    }
+
+    .close-modal {
+      position: absolute;
+      top: 20px; right: 30px;
+      font-size: 30px;
+      color: white;
+      cursor: pointer;
+    }
+
+    @media (max-width: 768px) {
+      .video-grid {
+        flex-direction: column;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="header">
+    <h1>Video Editing</h1>
+    <p>We are experienced video editors and Level One Sellers on Fiverr, having worked with multiple international clients.
+     <p>Alongside editing, we’ve also managed social media accounts to boost brand presence.</p>
+</p>
+  </div>
+
+  <div class="portfolio-container">
+
+  <!-- Box 1: YouTube style -->
+  <div class="project-box">
+    <h3 class="project-title">Stock Market Trends</h3>
+    <p class="project-description">A sleek, data-driven video highlighting the latest in stock market analysis.</p>
+    <div class="video-grid">
+      <div class="video-preview aspect-16-9">
+        <video controls preload="metadata" onclick="openModal(this)"  controlsList="nodownload">
+          <source src="https://res.cloudinary.com/djubgt2iw/video/upload/v1756406569/Stocks_gebhqd.mp4" type="video/mp4" />
+          Your browser does not support video.
+        </video>
+      </div>
+    </div>
+  </div>
+
+  <!-- Box 2: YouTube style -->
+  <div class="project-box">
+    <h3 class="project-title">Demon Slayer Fiction Edit</h3>
+    <p class="project-description">A dynamic fan edit crafted for a client, featuring powerful scenes from the popular anime.</p>
+    <div class="video-grid">
+      <div class="video-preview aspect-16-9">
+        <video controls preload="metadata" onclick="openModal(this)"  controlsList="nodownload">
+          <source src="https://res.cloudinary.com/djubgt2iw/video/upload/v1756406660/demon_jzuqpx.mp4" type="video/mp4" />
+          Your browser does not support video.
+        </video>
+      </div>
+    </div>
+  </div>
+
+  <!-- Box 3: YouTube style -->
+  <div class="project-box">
+    <h3 class="project-title">Jujutsu Kaisen Creative Edit</h3>
+    <p class="project-description">Custom-made video edit showcasing intense moments from the hit anime series.</p>
+    <div class="video-grid">
+      <div class="video-preview aspect-16-9">
+        <video controls preload="metadata" onclick="openModal(this)"  controlsList="nodownload">
+          <source src="https://res.cloudinary.com/djubgt2iw/video/upload/v1756406606/jujutsu_n1uukc.mp4" type="video/mp4" />
+          Your browser does not support video.
+        </video>
+      </div>
+    </div>
+  </div>
+
+  
+
+  <!-- Box 5: TikTok style -->
+  <div class="project-box">
+    <h3 class="project-title">Travel Agency Promo</h3>
+    <p class="project-description">A vibrant promotional edit designed for a travel agency’s campaign.</p>
+    <div class="video-grid">
+      <div class="video-preview aspect-9-16">
+        <video controls preload="metadata" onclick="openModal(this)"  controlsList="nodownload">
+          <source src="https://res.cloudinary.com/djubgt2iw/video/upload/v1756406544/Travel_b6lcme.mp4" type="video/mp4" />
+          Your browser does not support video.
+        </video>
+      </div>
+    </div>
+  </div>
+
+  <!-- Box 6: TikTok style -->
+  <div class="project-box">
+    <h3 class="project-title">Japanese Instagram Short</h3>
+    <p class="project-description">A culturally styled short video tailored for a Japanese Instagram audience.</p>
+    <div class="video-grid">
+      <div class="video-preview aspect-9-16">
+        <video controls preload="metadata" onclick="openModal(this)"  controlsList="nodownload">
+          <source src="https://res.cloudinary.com/djubgt2iw/video/upload/v1756406563/Japanese_g8kkva.mp4" type="video/mp4" />
+          Your browser does not support video.
+        </video>
+      </div>
+    </div>
+  </div>
+
+  <!-- Box 7: TikTok style -->
+  <div class="project-box">
+    <h3 class="project-title">Cyber Petal TikTok Edit</h3>
+    <p class="project-description">Futuristic and engaging content created for the Cyber Petal TikTok account.</p>
+    <div class="video-grid">
+      <div class="video-preview aspect-9-16">
+        <video controls preload="metadata" onclick="openModal(this)"  controlsList="nodownload">
+          <source src="https://res.cloudinary.com/djubgt2iw/video/upload/v1756406533/Cyberpetal_jxsqvp.mp4" type="video/mp4" />
+          Your browser does not support video.
+        </video>
+      </div>
+    </div>
+  </div>  
+                           <!-- Box 4: TikTok style -->
+  <div class="project-box">
+    <h3 class="project-title">Anime Short Edit</h3>
+    <p class="project-description">Action-packed shorts from Demon Slayer showcases creativity and efficient Editing.</p>
+    <div class="video-grid">
+      <div class="video-preview aspect-9-16">
+        <video controls preload="metadata" onclick="openModal(this)"  controlsList="nodownload">
+          <source src="https://res.cloudinary.com/djubgt2iw/video/upload/v1756406559/short_selosk.mp4" type="video/mp4" />
+          Your browser does not support video.
+        </video>
+      </div>
+    </div>
+  </div>
+   <div class="project-box">
+    <h3 class="project-title">Comics Edit</h3>
+    <p class="project-description">Dynamic edits showcasing popular comic book scenes from Batman Last Knight.</p>
+    <div class="video-grid">
+      <div class="video-preview aspect-9-16">
+        <video controls preload="metadata" onclick="openModal(this)"  controlsList="nodownload">
+          <source src="https://res.cloudinary.com/djubgt2iw/video/upload/v1756404487/Batman_cavnow.mp4" type="video/mp4" />
+          Your browser does not support video.
+        </video>
+      </div>
+    </div>
+  </div>
+
+
+</div>
+
+  <!-- Modal -->
+  <div class="modal" id="gallery-modal">
+    <span class="close-modal" onclick="closeModal()">&times;</span>
+    <div class="modal-content">
+      <video id="modal-video" controls autoplay></video>
+    </div>
+  </div>
+
+  <script>
+    function openModal(videoElement) {
+      const modal = document.getElementById("gallery-modal");
+      const modalVideo = document.getElementById("modal-video");
+      modalVideo.src = videoElement.querySelector("source").src;
+      modal.style.display = "flex";
+      document.body.style.overflow = "hidden";
+    }
+
+    function closeModal() {
+      const modal = document.getElementById("gallery-modal");
+      const modalVideo = document.getElementById("modal-video");
+      modal.style.display = "none";
+      modalVideo.pause();
+      modalVideo.src = "";
+      document.body.style.overflow = "auto";
+    }
+  </script>
+
+</body>
+</html>

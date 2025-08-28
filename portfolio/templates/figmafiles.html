@@ -1,0 +1,204 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Portfolio Display</title>
+   
+</head>
+<body>
+    <div class="header">
+        <h1>Website Designs</h1>
+        <p>Skilled in crafting intuitive game and website UI designs using Figma, with a focus on clean user experience and functional interface layouts.</p>
+    </div>
+
+    <div class="portfolio-container" id="portfolio-container">
+        <!-- Figma Projects will be loaded here dynamically -->
+    </div>
+
+    <script>
+        // ✅ Add your actual Figma prototype links here
+        const figmaLinks = [
+            "https://www.figma.com/proto/iQx73YaxuiwkSjlScnolJn/CourseaUI?node-id=1-2&starting-point-node-id=1%3A2&scaling=scale-down-width&content-scaling=fixed&t=BlykhzjbYXkp9VfW-1",
+            "https://www.figma.com/proto/kXsjNqQSq7okOEU9B1Ya1G/cyberpunk?node-id=1-2&p=f&t=l5WXVCXmq86wMwjd-1&scaling=scale-down-width&content-scaling=fixed&page-id=0%3A1&starting-point-node-id=1%3A2",
+            "https://www.figma.com/proto/fRkiHxQqQRMBa1Uly202ps/CAR?node-id=1-3&t=bZh2a7nNLy4VzNi9-1&scaling=scale-down-width&content-scaling=fixed&page-id=0%3A1"
+        ];
+
+        const portfolioContainer = document.getElementById('portfolio-container');
+
+        figmaLinks.forEach(link => {
+            const projectBox = document.createElement('div');
+            projectBox.className = 'project-box';
+
+            projectBox.innerHTML = `
+                <div class="project-cover">
+                    <div class="figma-container">
+                        <iframe src="https://www.figma.com/embed?embed_host=share&url=${encodeURIComponent(link)}" allowfullscreen></iframe>
+                    </div>
+                </div>
+                <div class="project-details">
+                    <h3 class="project-title">Figma Prototype</h3>
+                    <p class="project-description">Interactive Web Design made in Figma. Click on the pages to view Animations.</p>
+                    <div class="project-tags">
+                        <span class="tag">UI Design</span>
+                        <span class="tag">Prototype</span>
+                        <span class="tag">Figma</span>
+                    </div>
+                    <button class="action-btn" onclick="window.open('${link}', '_blank')">View Prototype</button>
+                </div>
+            `;
+
+            portfolioContainer.appendChild(projectBox);
+        });
+    </script>
+    <style>
+       :root {
+    --bg-dark: #353535ff;
+    --surface-dark: #1d1d1dff;
+    --text-light: #f2f2f2;
+    --accent: #8ecae6;
+    --tag-bg: #2a2a2a;
+    --box-shadow: rgba(0, 0, 0, 0.6);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background-color: var(--bg-dark);
+    color: var(--text-light);
+    padding: 2rem;
+}
+
+/* Header */
+.header {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.header h1 {
+    font-size: 2.5rem;
+    color: var(--accent);
+    margin-bottom: 0.5rem;
+}
+
+.header p {
+    font-size: 1.1rem;
+    opacity: 0.75;
+}
+
+/* Grid layout */
+.portfolio-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Project card */
+.project-box {
+    background: var(--surface-dark);
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px var(--box-shadow);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.project-box:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 40px var(--box-shadow);
+}
+
+/* Figma Embed Container */
+.project-cover {
+    position: relative;
+    height: 250px;
+    overflow: hidden;
+}
+
+.figma-container {
+    position: relative;
+    padding-bottom: 56.25%; /* 16:9 ratio */
+    height: 0;
+}
+
+.figma-container iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: none;
+    border-radius: 6px;
+    background-color: #000;
+}
+
+/* Details section */
+.project-details {
+    padding: 1.5rem;
+}
+
+.project-title {
+    font-size: 1.3rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+}
+
+.project-description {
+    font-size: 0.95rem;
+    line-height: 1.5;
+    opacity: 0.8;
+    margin-bottom: 1rem;
+}
+
+/* Tags */
+.project-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.tag {
+    background-color: var(--tag-bg);
+    color: var(--accent);
+    padding: 0.3rem 0.8rem;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 600;
+}
+
+/* Button */
+.action-btn {
+    background-color: var(--accent);
+    color: #000;
+    border: none;
+    padding: 0.7rem 1.5rem;
+    border-radius: 5px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.action-btn:hover {
+    background-color: #66b4d3;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .portfolio-container {
+        grid-template-columns: 1fr;
+    }
+}
+
+    </style>
+</body>
+</html>
+

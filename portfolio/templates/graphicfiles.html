@@ -1,0 +1,309 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Graphic Design</title>
+  <style>
+    :root {
+      --bg-dark: #1a1a1a;
+      --surface-dark: #2b2b2b;
+      --text-light: #f0f0f0;
+      --accent: #8ecae6;
+      --shadow: rgba(0, 0, 0, 0.6);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    body {
+      background-color: var(--bg-dark);
+      color: var(--text-light);
+      padding: 2rem;
+    }
+
+    .header {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+
+    .header h1 {
+      font-size: 2.5rem;
+      margin-bottom: 0.5rem;
+      color: var(--accent);
+    }
+
+    .header p {
+      font-size: 1.1rem;
+      opacity: 0.8;
+    }
+
+    .portfolio-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .project-box {
+      background: var(--surface-dark);
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 10px 30px var(--shadow);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .project-box:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 15px 35px var(--shadow);
+    }
+
+    .project-cover {
+      height: 200px;
+      overflow: hidden;
+    }
+
+    .project-cover img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+
+    .project-box:hover .project-cover img {
+      transform: scale(1.05);
+    }
+
+    .project-details {
+      padding: 1.2rem;
+    }
+
+    .project-title {
+      font-size: 1.3rem;
+      margin-bottom: 0.5rem;
+      font-weight: bold;
+      color: var(--accent);
+    }
+
+    .project-description {
+      font-size: 0.95rem;
+      opacity: 0.8;
+      margin-bottom: 1rem;
+    }
+
+    .view-btn {
+      padding: 0.6rem 1.2rem;
+      background-color: var(--accent);
+      border: none;
+      color: #000;
+      font-weight: bold;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+
+    .view-btn:hover {
+      background-color: #67b4cc;
+    }
+
+    /* Modal Gallery */
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 1000;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background-color: rgba(0,0,0,0.95);
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+    }
+
+    .modal-content {
+      position: relative;
+      max-width: 90%;
+      max-height: 90%;
+    }
+
+    .modal-content img {
+      width: 100%;
+      height: auto;
+      max-height: 80vh;
+      border-radius: 10px;
+    }
+
+    .close-modal {
+      position: absolute;
+      top: 20px;
+      right: 30px;
+      font-size: 30px;
+      color: white;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    .arrow {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 40px;
+      color: white;
+      background-color: rgba(0,0,0,0.4);
+      border-radius: 50%;
+      padding: 10px;
+      cursor: pointer;
+      z-index: 1001;
+      user-select: none;
+    }
+
+    .arrow.left {
+      left: 20px;
+    }
+
+    .arrow.right {
+      right: 20px;
+    }
+
+    @media (max-width: 768px) {
+      .portfolio-container {
+        grid-template-columns: 1fr;
+      }
+
+      .modal-content img {
+        max-height: 60vh;
+      }
+
+      .arrow {
+        font-size: 30px;
+        padding: 6px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <h1>Graphic Design Projects</h1>
+    <p>A curated collection of aesthetic graphic design projects created for various clients on Fiverr. </p>
+    <p>Experienced in delivering visually appealing designs tailored to brand identity and style. </p>
+  </div>
+
+  <div class="portfolio-container">
+  <!-- Project 1 -->
+  <div class="project-box">
+    <div class="project-cover">
+      <img src="https://res.cloudinary.com/djubgt2iw/image/upload/v1756411891/cinematic_ziinig.jpg" alt="Cover">
+    </div>
+    <div class="project-details">
+      <h3 class="project-title">Editorial & Cinematic Posters</h3>
+      <p class="project-description">Click below to view my editorial 
+        and cinematic poster designs showcasing my graphic design skills.
+</p>
+      <button class="view-btn" onclick="openModal(0)">View Designs</button>
+    </div>
+  </div>
+
+  <!-- Project 2 -->
+  <div class="project-box">
+    <div class="project-cover">
+      <img src="https://res.cloudinary.com/djubgt2iw/image/upload/v1756411898/thematic_yyoy2l.jpg" alt="Cover">
+    </div>
+    <div class="project-details">
+      <h3 class="project-title">Thematic Posters</h3>
+      <p class="project-description">Click below to view my Thematic Poster design previews.</p>
+      <button class="view-btn" onclick="openModal(1)">View Designs</button>
+    </div>
+  </div>
+
+  <!-- Project 3 -->
+  <div class="project-box">
+    <div class="project-cover">
+      <img src="https://res.cloudinary.com/djubgt2iw/image/upload/v1756412321/poss_vu7sbp.jpg" alt="Cover">
+    </div>
+    <div class="project-details">
+      <h3 class="project-title">Thumbnail Designs</h3>
+      <p class="project-description">Click below to view Thumbnail Design previews showcasing my graphic design skills.</p>
+      <button class="view-btn" onclick="openModal(2)">View Designs</button>
+    </div>
+  </div>
+</div>
+
+  <!-- Fullscreen Modal -->
+  <div class="modal" id="gallery-modal">
+    <span class="close-modal" onclick="closeModal()">&times;</span>
+    <span class="arrow left" onclick="prevImage()">&#10094;</span>
+    <div class="modal-content">
+      <img id="modal-image" src="" alt="Gallery Image">
+    </div>
+    <span class="arrow right" onclick="nextImage()">&#10095;</span>
+  </div>
+
+  <script>
+    const projectImages = [
+      [
+        "https://res.cloudinary.com/djubgt2iw/image/upload/v1756411939/1poster_s0c4if.png",
+        "https://res.cloudinary.com/djubgt2iw/image/upload/v1756411889/beauty_ld0dq9.jpg",
+        "https://res.cloudinary.com/djubgt2iw/image/upload/v1756411902/vogue_r0brwy.jpg",
+        "https://res.cloudinary.com/djubgt2iw/image/upload/v1756411894/car3_1_detjhn.jpg",
+        "https://res.cloudinary.com/djubgt2iw/image/upload/v1756411901/supra_fhoedo.jpg"
+      ],
+      [
+        
+        "https://res.cloudinary.com/djubgt2iw/image/upload/v1756411891/independence2_wvcpv3.jpg",
+        "https://res.cloudinary.com/djubgt2iw/image/upload/v1756411895/iqday_grfccj.jpg",
+        "https://res.cloudinary.com/djubgt2iw/image/upload/v1756411897/shake_xbf81e.jpg",
+        "https://res.cloudinary.com/djubgt2iw/image/upload/v1756411894/cupcake_if72dc.jpg",
+         "https://res.cloudinary.com/djubgt2iw/image/upload/v1756411898/fanta_vnuvxt.jpg",
+        "https://res.cloudinary.com/djubgt2iw/image/upload/v1756411887/food_zv98px.jpg"
+       
+      ],
+      [
+        "https://res.cloudinary.com/djubgt2iw/image/upload/v1756411886/6_unnrgo.jpg",
+        "https://res.cloudinary.com/djubgt2iw/image/upload/v1756411888/677_f22cg1.jpg",
+        "https://res.cloudinary.com/djubgt2iw/image/upload/v1756411899/thumb25_kxib31.jpg",
+        "https://res.cloudinary.com/djubgt2iw/image/upload/v1756411892/anime_ofr7bk.jpg",
+        "https://res.cloudinary.com/djubgt2iw/image/upload/v1756411896/food_delivery_uezfyp.jpg",
+        "https://res.cloudinary.com/djubgt2iw/image/upload/v1756411899/thumbnail_o0fihz.jpg"
+        
+      ]
+      // Add more arrays for other projects if needed
+    ];
+
+    let currentProject = 0;
+    let currentIndex = 0;
+
+    function openModal(projectIndex) {
+      currentProject = projectIndex;
+      currentIndex = 0;
+      showImage();
+      document.getElementById("gallery-modal").style.display = "flex";
+      document.body.style.overflow = "hidden";
+    }
+
+    function closeModal() {
+      document.getElementById("gallery-modal").style.display = "none";
+      document.body.style.overflow = "auto";
+    }
+
+    function showImage() {
+      const img = document.getElementById("modal-image");
+      img.src = projectImages[currentProject][currentIndex];
+    }
+
+    function nextImage() {
+      currentIndex = (currentIndex + 1) % projectImages[currentProject].length;
+      showImage();
+    }
+
+    function prevImage() {
+      currentIndex = (currentIndex - 1 + projectImages[currentProject].length) % projectImages[currentProject].length;
+      showImage();
+    }
+  </script>
+</body>
+</html>
+
