@@ -16,7 +16,9 @@ DEBUG = True
 
 ALLOWED_HOSTS = ["keslervisuals.onrender.com", "127.0.0.1", "localhost"]
 
-
+CSRF_TRUSTED_ORIGINS = [
+    "https://keslervisuals.onrender.com"
+]
 # Application definition
 
 INSTALLED_APPS = [
@@ -34,7 +36,7 @@ MIDDLEWARE = [
     "whitenoise.middleware.WhiteNoiseMiddleware",
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
-    'django.middleware.csrf.CsrfViewMiddleware',
+    'django.middleware.csrf.CsrfViewMiddleware', 
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
@@ -116,5 +118,6 @@ STATIC_ROOT = BASE_DIR / 'staticfiles'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
+
 
 
