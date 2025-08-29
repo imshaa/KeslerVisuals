@@ -14,7 +14,7 @@ SECRET_KEY = 'django-insecure-qf6(iwf*u59mr2w10ze9y=_o)z#c1*&r%o9jq-62b4a8zsx(++
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["keslervisuals.onrender.com", "127.0.0.1", "localhost"]
 
 
 # Application definition
@@ -116,4 +116,5 @@ STATIC_ROOT = BASE_DIR / 'staticfiles'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
+
 
